@@ -8,7 +8,7 @@ import cors from 'cors'
 // custom imports
 import User from './models/User.js'
 const app = express();
-const Port  = process.env.PORT || 3000;
+const Port  = 5000;
 ConnectDB();
 
 // middleware
