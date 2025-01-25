@@ -20,6 +20,14 @@ app.use(cors({ origin: 'https://localhost:3000'}));
 app.use('/api/auth',authRoutes);
 
 
+app.get('/api/users',async (req,res) => {
+    const {email,password} = req.body;
+
+    const user = await User.find({});
+    console.log(user)
+    res.send(user)
+})
+
 
 
 

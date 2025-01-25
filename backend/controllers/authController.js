@@ -1,34 +1,43 @@
 import User from '../models/User.js';
 
-// Login Controller
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required' });
+  }
+
   try {
+    console.log('Login attempt with email:', email);
     const user = await User.findOne({ email });
 
     if (!user) {
-      console.log('No user found, please sign up');
-      return res.status(400).json({ message: 'No user found..' });
+      console.log('No user found for email:', email);
+      return res.status(400).json({ message: 'No user found, please sign up' });
     }
 
-    const ismatch = await user.comparePassword(password);
-    
-    if (!ismatch) {
-      console.log('The password is wrong');
+    const isMatch = await user.comparePassword(password);
+    console.log('Password match status:', isMatch);
+
+    if (!isMatch) {
+      console.log('Incorrect password for email:', email);
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const token = user.generateAuthToken();
+    const token = await user.generateAuthToken();
+    console.log('Generated Token:', token);
+
     res.status(200).json({
       message: 'Login Successful',
       token,
     });
 
   } catch (err) {
+    console.error('Server error:', err.message);
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
+
 
 // Register Controller
 export const registerUser = async (req, res) => {
