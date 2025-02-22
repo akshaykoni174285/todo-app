@@ -27,7 +27,7 @@ const SignupPage = () => {
       localStorage.setItem('token', response.data.token); // Store JWT token in localStorage
     //   history.push('/dashboard'); 
     // Redirect to dashboard or home page
-    navigate('/dashboard');
+    navigate('/');
     } catch (err) {
       setError(err.response.data.message); // Handle error from backend
     }

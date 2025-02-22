@@ -9,19 +9,15 @@ export const loginUser = async (req, res) => {
 
   try {
     console.log('Login attempt with email:', email);
-    const user = await User.findOne({ email });
 
+    // Log the password received from request body
+    console.log('Received password:', password);
+
+    const user = await User.findByCredentials(email, password);
+    
     if (!user) {
       console.log('No user found for email:', email);
       return res.status(400).json({ message: 'No user found, please sign up' });
-    }
-
-    const isMatch = await user.comparePassword(password);
-    console.log('Password match status:', isMatch);
-
-    if (!isMatch) {
-      console.log('Incorrect password for email:', email);
-      return res.status(400).json({ message: 'Invalid credentials' });
     }
 
     const token = await user.generateAuthToken();
@@ -38,7 +34,6 @@ export const loginUser = async (req, res) => {
   }
 };
 
-
 // Register Controller
 export const registerUser = async (req, res) => {
   try {
@@ -54,16 +49,17 @@ export const registerUser = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'User is already registered' });
     }
+    const user = new User({ name, email, password });
 
     // Hash the password
-    const hashedPassword = await User.getHashedPassword(password);
+    // const hashedPassword = await User.getHashedPassword(password);
 
     // Create the user
-    const user = new User({
-      name,
-      email,
-      password: hashedPassword,
-    });
+    // const user = new User({
+    //   name,
+    //   email,
+    //   password: hashedPassword,
+    // });
 
     await user.save();
 

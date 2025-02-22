@@ -16,7 +16,7 @@ app.use(express.json());
 
 dotenv.config()
 
-app.use(cors({ origin: 'https://localhost:3000'}));
+app.use(cors());
 app.use('/api/auth',authRoutes);
 
 
