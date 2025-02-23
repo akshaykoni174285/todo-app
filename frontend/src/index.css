@@ -1,15 +1,99 @@
-@import "tailwindcss";
-
 body {
+  background-color: #434c5e;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('https://cdna.artstation.com/p/assets/images/images/005/801/464/large/alena-aenami-s1k.jpg?1493858295') no-repeat center center/cover; 
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h2 {
+  text-align: center;
+}
+
+.Card {
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(76, 86, 106, 0.4); /* Glass effect */
+  backdrop-filter: blur(15px); /* Stronger blur effect */
+  -webkit-backdrop-filter: blur(15px);
+  height: auto;
+  width: 90%;
+  max-width: 800px;
+  min-width: 500px; /* Responsive design */
+  padding: 20px;
+  padding-top : 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.Form {
+  padding: 20px;
+  padding-top: 0px;
+
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-child {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Title{
+  color:  #2e3440  ;
+}
+input,
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none; /* Removes default focus outline */
+}
+
+input {
+  border: none; /* Removes default border */
+  background-color: rgba(255, 255, 255, 0.2); /* Matches button better */
+  color: white;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #d8dee9;
+}
+
+button {
+  border: none;
+  background-color: rgba(129, 161, 193, 0.8); /* More transparent to match input */
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #5e81ac;
+}
+
+.Main {
+  /* width : 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  height: 100vh;
+}
+
+.Title_child {
+  color: #a3be8c;
 }
