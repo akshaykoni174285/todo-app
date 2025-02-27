@@ -1,6 +1,5 @@
 
-
-import Task from '../models/Task';
+import Task from '../models/Task.js';
 
 
 export const addTask = async(req,res) =>{
@@ -9,11 +8,19 @@ export const addTask = async(req,res) =>{
 
         if(!title){
             return res.status(400).json({message:"Task title is required"});
-            
+
         }
+        const newTask = new Task({
+            user: req.user.userId,
+            title,
+
+        });
+        await newTask.save();
+        res.status(201).json(newTask)
+
         
        } catch (error) {
-        res.status(500).json({message: "server error"});
+        res.status(501).json({message: "error"});
 
         
        } 

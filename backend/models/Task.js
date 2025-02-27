@@ -1,11 +1,7 @@
 
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
-import jwt from 'jwt';
-import dotenv from 'dotenv';
 
 
-dotenv.config();
 
 
 const taskSchema = new mongoose.Schema({

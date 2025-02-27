@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import ConnectDB from './config/db.js'
 import authRoutes from './routes/authRoutes.js'
+import taskRoutes from './routes/taskRoutes.js'
+
 import cors from 'cors'
 
 
@@ -18,6 +20,7 @@ dotenv.config()
 
 app.use(cors());
 app.use('/api/auth',authRoutes);
+app.use('/dashboard',taskRoutes);
 
 
 app.get('/api/users',async (req,res) => {

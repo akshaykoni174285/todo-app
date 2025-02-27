@@ -5,16 +5,28 @@ dotenv.config();
 
 const authMiddleware = (req, res, next)=>{
 
-    const token = req.header('Authorization')?.replace('Bearer ','')
 
-    console.log(token)
-    if(!token){
-        return res.status(401).json({message:'Access Denied. No token provided'});
+    const authHeader = req.header('Authorization');
+
+    if(!authHeader){
+        return res.status(401).json({message: 'Invalid authorization header'})
+
 
     }
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const token = authHeader.replace('Bearer','').trim();
 
+    console.log('Auth Middleware - Received Token:', token);
+
+    // const token = req.header('Authorization')?.replace('Bearer ','')
+
+    console.log(token)
+    // if(!token){
+    //     return res.status(401).json({message:'Access Denied. No token provided'});
+
+    // }
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        console.log(decoded)
         req.user = decoded;
         next();
     } catch (error) {
@@ -22,3 +34,5 @@ const authMiddleware = (req, res, next)=>{
 
     }
 }
+
+export default authMiddleware;
