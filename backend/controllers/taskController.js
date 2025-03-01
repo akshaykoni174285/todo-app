@@ -41,5 +41,5 @@ export const tasks = async (req, res)=>{
 
     const usertasks = await User.findById(user).populate('tasks');
     const tasks = usertasks.tasks;
-    res.send({'all tasks': tasks}).status(200);
+    res.send({tasks}).status(200);
 }

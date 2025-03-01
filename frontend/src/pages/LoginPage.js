@@ -22,7 +22,7 @@ const LoginPage = ()=>{
           console.log(response.data)
 
           localStorage.setItem('token',response.data.token)
-          navigate('/')
+          navigate('/dashboard/tasks')
 
       } catch (error) {
           setError(error.response.data.message)
