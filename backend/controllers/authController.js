@@ -34,17 +34,17 @@ export const loginUser = async (req, res) => {
   }
 };
 
-// Register Controller
+
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Validate input for all fields
+  
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Check if the user already exists
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User is already registered' });
