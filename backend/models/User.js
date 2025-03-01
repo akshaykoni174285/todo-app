@@ -8,6 +8,10 @@ dotenv.config();
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  tasks:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref: 'Task',
+  }],
   password: { type: String, required: true },
   tokens: [
     {
@@ -48,7 +52,7 @@ userSchema.statics.findByCredentials = async function (email, password) {
       throw new Error('Unable to login: User not found');
     }
 
-    // Log the user and password from database
+    
     console.log('User found:', user);
     const isMatch = await bcrypt.compare(password, user.password);
     
@@ -56,7 +60,7 @@ userSchema.statics.findByCredentials = async function (email, password) {
 
     if (!isMatch) {
       console.log('Incorrect password for email:', email);
-      return null; // Instead of throwing error, return null
+      return null; 
     }
 
 
@@ -83,7 +87,6 @@ userSchema.methods.generateAuthToken = async function () {
     expiresIn: '5h',
   });
 
-  // Optionally manage multiple tokens, e.g., remove the oldest token if limit is reached
   if (this.tokens.length >= 3) {
     this.tokens.shift(); // Remove the first (oldest) token
   }
