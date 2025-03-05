@@ -22,7 +22,7 @@ app.use(cors());
 app.use('/api/auth',authRoutes);
 app.use('/dashboard',taskRoutes);
 
-
+// add the routes
 app.get('/api/users',async (req,res) => {
     const {email,password} = req.body;
 
