@@ -19,10 +19,13 @@ const LoginPage = ()=>{
             email,
             password
           })
+          
           console.log(response.data)
 
           localStorage.setItem('token',response.data.token)
           navigate('/dashboard/tasks')
+          
+          
 
       } catch (error) {
           setError(error.response.data.message)
@@ -30,29 +33,37 @@ const LoginPage = ()=>{
     };
 
 
-    return(
-      <div>
-        <h2>Login</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+    return (
+      <div className="Card">
+          <div className="Form">
+              <h2 className="Title_child">Login</h2>
+              {error && <p>{error}</p>}
+              <form onSubmit={handleLogin} className="form-child">
+                  <input
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <input
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <button 
+                      type="submit" 
+                      className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-200">
+                      Login In
+                  </button>
+              </form>
+          </div>
       </div>
-    )
+  );
 
 }
 

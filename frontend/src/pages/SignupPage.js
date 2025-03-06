@@ -62,6 +62,7 @@ const SignupPage = () => {
                         Sign Up
                     </button>
                 </form>
+                <p onClick={()=> navigate("/login")}>already having account? login</p>
             </div>
         </div>
     );
